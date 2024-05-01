@@ -1,27 +1,27 @@
-import Employee from "../employeeModel.js" 
+import Employee from "../model/employeeModel.js"
 
 export const create = async(req, res) => {
-  try {
-      const employeeData = new Employee(req.body)
-      const { userName } = employeeDate
-      const employeeExist = await Employee.findOne({userName})
+    try {
+        const employeeData = new Employee(req.body)
+        const { userName } = employeeData
+        const employeeExist = await Employee.findOne({userName})
 
-      if(employeeExit) {
-        return res.status(200).json({message: "Employee already exists."})
-      }
+        if(employeeExist) {
+            return res.status(200).json({message: "Employee already exists."})
+        }
 
-      const savedEmployee = await employeeData.save();
-      res.status(200).json(savedEmployee)
+        const savedEmployee = await employeeData.save();
+        res.status(200).json(savedEmployee)
 
-  } catch (error) {
-      res.status(500).json({error: "Internal Server Error"})
-  }
+    } catch (error) {
+        res.status(500).json({error: "Internal Server Error"})
+    }
 }
 
 export const fetch = async(req, res) => {
-  try {
-      res.json("Hello World")
-  } catch (error) {
-    res.status(500).json({error: "Internal Server Error"})
-  }
+    try {
+        res.json("Hello World")
+    } catch (error) {
+        res.status(500).json({error: "Internal Server Error"})
+    }
 }
